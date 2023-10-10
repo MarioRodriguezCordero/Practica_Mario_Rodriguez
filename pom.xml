@@ -81,7 +81,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.practica_mario_rodriguez/com.example.practica_mario_rodriguez.HelloApplication
+                                com.example.practica_mario_rodriguez/com.example.practica_mario_rodriguez.ListaMineralesApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

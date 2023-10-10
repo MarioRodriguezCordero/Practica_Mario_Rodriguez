@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tblTabla" layoutX="80.0" layoutY="96.0" prefHeight="423.0" prefWidth="544.0">
+        <columns>
+          <TableColumn fx:id="tblcMineral" prefWidth="121.5999755859375" text="MINERAL" />
+          <TableColumn fx:id="tblcColor" minWidth="1.5999755859375" prefWidth="107.20002746582031" text="COLOR" />
+            <TableColumn fx:id="tblcBrillo" prefWidth="103.199951171875" text="BRILLO" />
+            <TableColumn fx:id="tblcDureza" prefWidth="104.79998779296875" text="DUREZA" />
+            <TableColumn fx:id="tblcGrupo" prefWidth="114.39996337890625" text="GRUPO" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnAnnadir" layoutX="180.0" layoutY="543.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="114.0" text="Añadir" />
+      <Button fx:id="btnEliminar" layoutX="414.0" layoutY="543.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="114.0" text="Eliminar" />
+      <Label layoutX="173.0" layoutY="25.0" text="LISTA DE MINERALES" textFill="#c11818" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
