@@ -4,10 +4,9 @@ import com.example.practica_mario_rodriguez.clase.Mineral;
 import com.example.practica_mario_rodriguez.util.R;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class DB_Manager {
@@ -27,16 +26,16 @@ public class DB_Manager {
             conexion = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + name + "?serverTimezone=UTC",
                     username, password);
         } catch (SQLException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
 
-    public void desconectar() throws SQLException {
+    public void desconectar() {
         try{
             conexion.close();
         } catch (SQLException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());;
         }
     }
 
@@ -54,7 +53,7 @@ public class DB_Manager {
             sentencia.setString(5, mineral.getGrupo());
             sentencia.executeUpdate();
         } catch (SQLException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());;
         }
     }
 
@@ -66,7 +65,7 @@ public class DB_Manager {
             sentencia.setString(1, mineral.getMineral());
             sentencia.executeUpdate();
         } catch (SQLException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());;
         }
     }
 
@@ -77,13 +76,25 @@ public class DB_Manager {
             PreparedStatement sentencia = conexion.prepareStatement(sql);
             sentencia.setString(1, mineralNuevo.getMineral());
             sentencia.setString(2, mineralNuevo.getColor());
-            sentencia.setString(3, mineralNuevo.getBrillo();
+            sentencia.setString(3, mineralNuevo.getBrillo());
             sentencia.setString(4, mineralNuevo.getDureza_Mohs());
             sentencia.setString(5, mineralNuevo.getGrupo());
             sentencia.setInt(6, mineralAntiguo.getId());
             sentencia.executeUpdate();
         } catch (SQLException e){
+            System.out.println(e.getMessage());;
+        }
+    }
+
+    public static ResultSet getMinerales(int resultSetType, int resultSetConcurrency) {
+        try {
+            Statement stmt = conexion.createStatement(resultSetType, resultSetConcurrency);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM minerales");
+            //stmt.close();
+            return rs;
+        } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
     }
 

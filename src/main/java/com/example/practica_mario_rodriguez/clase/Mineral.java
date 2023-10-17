@@ -8,6 +8,9 @@ public class Mineral {
     private String dureza_Mohs;
     private String grupo;
 
+    public Mineral() {
+    }
+
     public Mineral(int id, String mineral, String color, String brillo, String dureza_Mohs, String grupo) {
         this.id = id;
         this.mineral = mineral;
@@ -71,5 +74,10 @@ public class Mineral {
 
     public void setGrupo(String grupo) {
         this.grupo = grupo;
+    }
+
+    @Override
+    public String toString() {
+        return mineral + " " + color + " " + brillo + " " + dureza_Mohs + " " +grupo;
     }
 }
