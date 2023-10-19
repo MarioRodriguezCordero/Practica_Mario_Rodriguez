@@ -4,23 +4,22 @@ import com.example.practica_mario_rodriguez.clase.Mineral;
 import com.example.practica_mario_rodriguez.util.R;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 public class DB_Manager {
-    private Connection conexion;
+    private static Connection conexion;
 
-    public void conectar() throws ClassNotFoundException, SQLException, IOException {
+    public static void conectar() throws ClassNotFoundException, SQLException, IOException {
         try {
-            Properties configuration = new Properties();
-            configuration.load(R.getProperties("database.properties"));
-            String host = configuration.getProperty("host");
-            String port = configuration.getProperty("port");
-            String name = configuration.getProperty("name");
-            String username = configuration.getProperty("username");
-            String password = configuration.getProperty("password");
+            String host = "localhost";
+            String port = "3306";
+            String name = "lista_minerales";
+            String username = "root";
+            String password = "toor";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + name + "?serverTimezone=UTC",

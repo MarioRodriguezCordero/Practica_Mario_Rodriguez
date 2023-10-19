@@ -2,7 +2,6 @@ package com.example.practica_mario_rodriguez;
 
 import com.example.practica_mario_rodriguez.clase.Mineral;
 import com.example.practica_mario_rodriguez.util.ShowAlert;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 public class ListaMineralesController {
 
@@ -30,10 +28,10 @@ public class ListaMineralesController {
     private Button btnModificar;
 
     @FXML
-    private TableView<?> tblTabla;
+    private TableView<Object> tblTabla;
 
     @FXML
-    private TableColumn<?, ?> tblcBrillo;
+    private TableColumn<String, String> tblcBrillo;
 
     @FXML
     private TableColumn<?, ?> tblcColor;
@@ -47,13 +45,10 @@ public class ListaMineralesController {
     @FXML
     private TableColumn<?, ?> tblcMineral;
 
-    private DB_Manager dbManager;
-
     @FXML
     private void initialize(){
-        dbManager = new DB_Manager();
         try {
-            dbManager.conectar();
+            DB_Manager.conectar();
         } catch (ClassNotFoundException e) {
             ShowAlert.mostrarError("Error al conectar con la base de datos");
         } catch (SQLException e) {
@@ -64,22 +59,26 @@ public class ListaMineralesController {
     }
 
     public void cargarDatos() {
-        tblTabla.getItems().clear();
+        ObservableList<Object> lista = FXCollections.observableArrayList();
         try {
             ResultSet rs = DB_Manager.getMinerales(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             if (rs != null) {
                 while (rs.next()) {
-                    String nombre = rs.getString("nombreUsuarios");
-                    String Dificultad = rs.getString("Dificultad");
-                    String resultado = rs.getString("Resultado");
-                    lista.add(new Resultados(nombre, Dificultad, resultado));
+                    String mineral = rs.getString("mineral");
+                    String color = rs.getString("color");
+                    String brillo = rs.getString("brillo");
+                    String dureza_Mohs = rs.getString("dureza_Mohs");
+                    String grupo = rs.getString("grupo");
+                    lista.add(new Mineral(mineral, color, brillo, dureza_Mohs, grupo));
                 }
                 rs.close();
             }
-            columUsuario.setCellValueFactory(new PropertyValueFactory<>("NombreUsuarios"));
-            columDificultad.setCellValueFactory(new PropertyValueFactory<>("Dificultad"));
-            columResultado.setCellValueFactory(new PropertyValueFactory<>("Resultado"));
-            tableEstadisticas.setItems(lista);
+            tblcMineral.setCellValueFactory(new PropertyValueFactory<>("mineral"));
+            tblcColor.setCellValueFactory(new PropertyValueFactory<>("color"));
+            tblcBrillo.setCellValueFactory(new PropertyValueFactory<>("brillo"));
+            tblcDureza.setCellValueFactory(new PropertyValueFactory<>("dureza_Mohs"));
+            tblcGrupo.setCellValueFactory(new PropertyValueFactory<>("grupo"));
+            tblTabla.setItems(lista);
         } catch (SQLException sqle) {
             ShowAlert.mostrarError("Error cargando los datos de la aplicación");
         }
