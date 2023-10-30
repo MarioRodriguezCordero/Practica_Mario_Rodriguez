@@ -15,8 +15,6 @@ public class ListaMineralesApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(ListaMineralesApplication.class.getResource("listaMin_PantallaPrincipal.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
-        controller.cargarDatos();
-
         stage.setTitle("Lista Minerales");
         stage.setScene(scene);
         stage.show();

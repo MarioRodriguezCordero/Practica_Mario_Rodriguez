@@ -46,21 +46,14 @@ public class ListaMineralesController {
     private TableColumn<Mineral, String> tblcMineral;
 
     @FXML
+    private ObservableList<Mineral> lista;
+
+    @FXML
     private void initialize(){
         try {
             DB_Manager.conectar();
-        } catch (ClassNotFoundException e) {
-            ShowAlert.mostrarError("Error al conectar con la base de datos");
-        } catch (SQLException e) {
-            ShowAlert.mostrarError("Error al iniciar la aplicación");
-        } catch (IOException e) {
-            ShowAlert.mostrarError("Error al cargar la configuración");
-        }
-    }
+            lista = FXCollections.observableArrayList();
 
-    public void cargarDatos() {
-        ObservableList<Mineral> lista = FXCollections.observableArrayList();
-        try {
             ResultSet rs = DB_Manager.getMinerales(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             if (rs != null) {
                 while (rs.next()) {
@@ -73,14 +66,19 @@ public class ListaMineralesController {
                 }
                 rs.close();
             }
-            tblcMineral.setCellValueFactory(new PropertyValueFactory<>("mineral"));
-            tblcColor.setCellValueFactory(new PropertyValueFactory<>("color"));
-            tblcBrillo.setCellValueFactory(new PropertyValueFactory<>("brillo"));
-            tblcDureza.setCellValueFactory(new PropertyValueFactory<>("dureza_Mohs"));
-            tblcGrupo.setCellValueFactory(new PropertyValueFactory<>("grupo"));
+            tblcMineral.setCellValueFactory(new PropertyValueFactory<Mineral, String>("mineral"));
+            tblcColor.setCellValueFactory(new PropertyValueFactory<Mineral, String>("color"));
+            tblcBrillo.setCellValueFactory(new PropertyValueFactory<Mineral, String>("brillo"));
+            tblcDureza.setCellValueFactory(new PropertyValueFactory<Mineral, String>("dureza_Mohs"));
+            tblcGrupo.setCellValueFactory(new PropertyValueFactory<Mineral, String>("grupo"));
             tblTabla.setItems(lista);
-        } catch (SQLException sqle) {
-            ShowAlert.mostrarError("Error cargando los datos de la aplicación");
+
+        } catch (ClassNotFoundException e) {
+            ShowAlert.mostrarError("Error al conectar con la base de datos");
+        } catch (SQLException e) {
+            ShowAlert.mostrarError("Error al iniciar la aplicación");
+        } catch (IOException e) {
+            ShowAlert.mostrarError("Error al cargar la configuración");
         }
     }
 

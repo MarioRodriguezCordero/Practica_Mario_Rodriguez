@@ -7,24 +7,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.practica_mario_rodriguez.ListaMineralesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.practica_mario_rodriguez.ListaMineralesController">
    <children>
-      <TableView fx:id="tblTabla" layoutX="80.0" layoutY="96.0" prefHeight="423.0" prefWidth="544.0">
+      <TableView fx:id="tblTabla" layoutX="77.0" layoutY="96.0" prefHeight="423.0" prefWidth="732.0">
         <columns>
           <TableColumn fx:id="tblcMineral" prefWidth="121.5999755859375" text="MINERAL" />
           <TableColumn fx:id="tblcColor" minWidth="1.5999755859375" prefWidth="107.20002746582031" text="COLOR" />
             <TableColumn fx:id="tblcBrillo" prefWidth="103.199951171875" text="BRILLO" />
             <TableColumn fx:id="tblcDureza" prefWidth="104.79998779296875" text="DUREZA" />
-            <TableColumn fx:id="tblcGrupo" prefWidth="114.39996337890625" text="GRUPO" />
+            <TableColumn fx:id="tblcGrupo" prefWidth="293.5999755859375" text="GRUPO" />
         </columns>
       </TableView>
       <Button fx:id="btnAnnadir" layoutX="80.0" layoutY="543.0" mnemonicParsing="false" onAction="#annadir" prefHeight="48.0" prefWidth="114.0" text="Añadir" />
-      <Button fx:id="btnEliminar" layoutX="509.0" layoutY="543.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="48.0" prefWidth="114.0" text="Eliminar" />
-      <Label layoutX="173.0" layoutY="25.0" text="LISTA DE MINERALES" textFill="#c11818" underline="true">
+      <Button fx:id="btnEliminar" layoutX="694.0" layoutY="543.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="48.0" prefWidth="114.0" text="Eliminar" />
+      <Label layoutX="267.0" layoutY="24.0" text="LISTA DE MINERALES" textFill="#c11818" underline="true">
          <font>
             <Font name="System Bold Italic" size="36.0" />
          </font>
       </Label>
-      <Button fx:id="btnModificar" layoutX="294.0" layoutY="543.0" mnemonicParsing="false" onAction="#modificar" prefHeight="48.0" prefWidth="114.0" text="Modificar" />
+      <Button fx:id="btnModificar" layoutX="388.0" layoutY="543.0" mnemonicParsing="false" onAction="#modificar" prefHeight="48.0" prefWidth="114.0" text="Modificar" />
    </children>
 </AnchorPane>
