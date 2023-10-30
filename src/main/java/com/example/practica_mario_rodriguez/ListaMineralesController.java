@@ -28,22 +28,22 @@ public class ListaMineralesController {
     private Button btnModificar;
 
     @FXML
-    private TableView<Object> tblTabla;
+    private TableView<Mineral> tblTabla;
 
     @FXML
-    private TableColumn<String, String> tblcBrillo;
+    private TableColumn<Mineral, String> tblcBrillo;
 
     @FXML
-    private TableColumn<?, ?> tblcColor;
+    private TableColumn<Mineral, String> tblcColor;
 
     @FXML
-    private TableColumn<?, ?> tblcDureza;
+    private TableColumn<Mineral, String> tblcDureza;
 
     @FXML
-    private TableColumn<?, ?> tblcGrupo;
+    private TableColumn<Mineral, String> tblcGrupo;
 
     @FXML
-    private TableColumn<?, ?> tblcMineral;
+    private TableColumn<Mineral, String> tblcMineral;
 
     @FXML
     private void initialize(){
@@ -59,7 +59,7 @@ public class ListaMineralesController {
     }
 
     public void cargarDatos() {
-        ObservableList<Object> lista = FXCollections.observableArrayList();
+        ObservableList<Mineral> lista = FXCollections.observableArrayList();
         try {
             ResultSet rs = DB_Manager.getMinerales(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             if (rs != null) {
